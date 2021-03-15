@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+
+	<context:property-placeholder location="classpath:application.properties"
+		order="1" ignore-unresolvable="true" />
+		
+	    <!-- <bean id="dsJndiTemplate" class="org.springframework.jndi.JndiTemplate">
+			<property name="environment">
+				<props>
+					<prop key="java.naming.provider.url">t3://10.2.249.100:7777</prop>
+					<prop key="java.naming.factory.initial">weblogic.jndi.WLInitialContextFactory</prop>
+				</props>
+			</property>
+		</bean>
+		
+		<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean"> 
+			<property name="jndiName" value="agencyds"></property> 
+			<property name="jndiTemplate" ref="dsJndiTemplate"></property>
+		</bean> --> 
+		
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+		<property name="targetDataSource" ref="hikarDs" /> </bean>
+
+	<bean id="hikarDs" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<property name="username" value="${database.user}" />
+		<property name="password" value="${database.password}" />
+		<property name="dataSourceClassName" value="oracle.jdbc.pool.OracleDataSource" />
+		<property name="maximumPoolSize" value="${database.maximumPoolSize}" />
+		<property name="maxLifetime" value="${database.maxLifetime}" />
+		<property name="idleTimeout" value="${database.idleTimeout}" />
+		<property name="poolName" value="agency-api" />
+		<property name="autoCommit" value="${database.autoCommit}" />
+		<property name="dataSourceProperties">
+			<props>
+				<prop key="url">${database.url}</prop>
+			</props>
+		</property>
+	</bean>
+ 
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan">
+			<list>
+				<value>com.ceva.db.model</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.connection.provider_class">${hibernate.connection.provider_class}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.default_schema">${hibernate.default_schema}</prop>
+				<prop key="current_session_context_class">${current_session_context_class}</prop>
+				<prop key="hibernate.connection.characterEncoding">${hibernate.connection.characterEncoding}</prop>
+				<prop key="hibernate.connection.CharSet">${hibernate.connection.CharSet}</prop>
+				<prop key="hibernate.connection.useUnicode">${hibernate.connection.useUnicode}</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">${hibernate.temp.use_jdbc_metadata_defaults}</prop>
+				<prop key="hibernate.connection.autoReconnect">${hibernate.connection.autoReconnect}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.max_fetch_depth">${hibernate.max_fetch_depth}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="deRegisterDriver" class="com.ceva.bean.processor.DeRegisterDrivers"
+		destroy-method="deRegisterDrivers" />
+		
+	<!--  <bean id="hibernateTransactionManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	<tx:annotation-driven transaction-manager="hibernateTransactionManager"/> -->
+
+<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  	<property name="host" value="172.16.27.145"/>
+	  	<property name="port" value="25"/>
+	  	<!-- <property name="username" value="AgencyBanking@firstbanknigeria.com"/> -->
+	  	<property name="username" value=""/>
+	 	<property name="password" value=""/>
+	  	<property name="javaMailProperties">
+			<props>
+			    <prop key="mail.transport.protocol">smtp</prop>
+			    <prop key="mail.smtp.auth">false</prop>
+			    <prop key="mail.smtp.starttls.enable">false</prop>
+			    <prop key="mail.debug">true</prop>
+			</props>
+  		</property>
+    </bean> 
+
+	<bean id="externalMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  	<property name="host" value="192.168.60.64"/>
+	  	<property name="port" value="25"/>
+	  	<!-- <property name="username" value="AgencyBanking@firstbanknigeria.com"/> -->
+	  	<property name="username" value=""/>
+	 	<property name="password" value=""/>
+	  	<property name="javaMailProperties">
+			<props>
+			    <prop key="mail.transport.protocol">smtp</prop>
+			    <prop key="mail.smtp.auth">false</prop>
+			    <prop key="mail.smtp.starttls.enable">false</prop>
+			    <prop key="mail.debug">true</prop>
+			</props>
+  		</property>
+    </bean>
+
+    <bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<props>
+				<prop key="resource.loader">class</prop>
+				<prop key="class.resource.loader.class">
+					org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+	 <bean id="securityDAO" class="com.ceva.bank.common.dao.impl.SecurityDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	 </bean>
+
+	<bean id="commonUtil" class="com.nbk.util.CommonUtil"/>
+	 <bean id="securityUtil" class="com.ceva.security.SecurityUtil"/>
+	 <bean id="reqFilter" class="com.ceva.security.URLFilter">
+		<property name="securityDAO" ref="securityDAO" />
+		<property name="securityUtil" ref="securityUtil" />
+	 </bean>
+	 
+	 <bean id="respFilter" class="com.ceva.security.ResponseFilter">
+		<property name="securityDAO" ref="securityDAO" />
+		<property name="securityUtil" ref="securityUtil" />
+	 </bean>
+
+	<context:component-scan base-package="com.nbk.util"/>
+	<context:component-scan base-package="com.ceva.*">
+		 <context:exclude-filter type="annotation"
+                            expression="org.springframework.stereotype.Controller"/>
+	</context:component-scan>
+	</beans>
