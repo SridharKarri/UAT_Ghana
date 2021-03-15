@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation=" http://www.springframework.org/schema/beans
+						http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+						http://www.springframework.org/schema/context
+						http://www.springframework.org/schema/context/spring-context-4.0.xsd
+           				http://www.springframework.org/schema/tx
+						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        				http://www.springframework.org/schema/task
+        				http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<task:annotation-driven />
+	<context:annotation-config />
+	<context:component-scan base-package="com.ceva.*" />
+	<context:property-placeholder location="classpath:application.properties"
+		order="1" ignore-unresolvable="true" />
+
+	<bean id="billerJob" class="com.ceva.cron.listener.BillerJob" />
+	
+	<!-- mail and scheduler configuration START -->
+	<task:scheduler id="taskScheduler" pool-size="5" />
+
+	<task:scheduled-tasks>
+
+		<task:scheduled ref="billerJob" method="syncAirTimeBillers" fixed-delay="18000"/>
+		<task:scheduled ref="billerJob" method="syncCategories" fixed-delay="18000"/>
+		<task:scheduled ref="billerJob" method="syncBillers" fixed-delay="28000" />
+		<task:scheduled ref="billerJob" method="syncBillPaymentItems" fixed-delay="38000"  />
+		<task:scheduled ref="billerJob" method="syncBillPaymentFormItems" fixed-delay="48000"/>
+		
+	</task:scheduled-tasks>
+
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  	<property name="host" value="172.16.27.153"/>
+	  	<property name="port" value="25"/>
+	  	<!-- <property name="username" value="AgencyBanking@firstbanknigeria.com"/> -->
+	  	<property name="username" value=""/>
+	 	<property name="password" value=""/>
+	  	<property name="javaMailProperties">
+			<props>
+			    <prop key="mail.transport.protocol">smtp</prop>
+			    <prop key="mail.smtp.auth">false</prop>
+			    <prop key="mail.smtp.starttls.enable">false</prop>
+			    <prop key="mail.debug">true</prop>
+			</props>
+  		</property>
+    </bean> 
+
+	<bean id="externalMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	  	<property name="host" value="192.168.60.64"/>
+	  	<property name="port" value="25"/>
+	  	<!-- <property name="username" value="AgencyBanking@firstbanknigeria.com"/> -->
+	  	<property name="username" value=""/>
+	 	<property name="password" value=""/>
+	  	<property name="javaMailProperties">
+			<props>
+			    <prop key="mail.transport.protocol">smtp</prop>
+			    <prop key="mail.smtp.auth">false</prop>
+			    <prop key="mail.smtp.starttls.enable">false</prop>
+			    <prop key="mail.debug">true</prop>
+			</props>
+  		</property>
+    </bean>
+
+
+    <bean id="velocityEngine"
+		class="org.springframework.ui.velocity.VelocityEngineFactoryBean">
+		<property name="velocityProperties">
+			<props>
+				<prop key="resource.loader">class</prop>
+				<prop key="class.resource.loader.class">
+					org.apache.velocity.runtime.resource.loader.ClasspathResourceLoader
+				</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.TransactionAwareDataSourceProxy">
+		<property name="targetDataSource" ref="hikarDs" />
+	</bean>
+	
+	<bean id="hikarDs" class="com.zaxxer.hikari.HikariDataSource"
+		destroy-method="close">
+		<property name="username" value="${database.user}" />
+		<property name="password" value="${database.password}" />
+		<property name="dataSourceClassName" value="${database.dataSourceClassName}" />
+		<property name="maximumPoolSize" value="${database.maximumPoolSize}" />
+		<property name="maxLifetime" value="${database.maxLifetime}" />
+		<property name="idleTimeout" value="${database.idleTimeout}" />
+		<property name="poolName" value="${database.poolName}" />
+		<property name="autoCommit" value="${database.autoCommit}" />
+		<property name="dataSourceProperties">
+			<props>
+				<prop key="url">${database.url}</prop>
+			</props>
+		</property>
+	</bean> 
+	
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="packagesToScan">
+			<list>
+				<value>com.ceva.db.model</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.connection.provider_class">${hibernate.connection.provider_class}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">${hibernate.hbm2ddl.auto}</prop>
+				<prop key="hibernate.default_schema">${hibernate.default_schema}</prop>
+				<prop key="current_session_context_class">${current_session_context_class}</prop>
+				<prop key="hibernate.connection.characterEncoding">${hibernate.connection.characterEncoding}</prop>
+				<prop key="hibernate.connection.CharSet">${hibernate.connection.CharSet}</prop>
+				<prop key="hibernate.connection.useUnicode">${hibernate.connection.useUnicode}</prop>
+				<prop key="hibernate.temp.use_jdbc_metadata_defaults">${hibernate.temp.use_jdbc_metadata_defaults}</prop>
+				<prop key="hibernate.connection.autoReconnect">${hibernate.connection.autoReconnect}</prop>
+				<prop key="hibernate.connection.release_mode">${hibernate.connection.release_mode}</prop>
+				<prop key="hibernate.cache.use_second_level_cache">${hibernate.cache.use_second_level_cache}</prop>
+				<prop key="hibernate.cache.use_query_cache">${hibernate.cache.use_query_cache}</prop>
+				<prop key="hibernate.max_fetch_depth">${hibernate.max_fetch_depth}</prop>
+				<prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="deRegisterDriver" class="com.ceva.bean.processor.DeRegisterDrivers"
+		destroy-method="deRegisterDrivers" />
+</beans>
