@@ -1,0 +1,172 @@
+<!--
+The below is the sample template used to send the mail
+--!>
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40">
+
+
+
+<head>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=us-ascii">
+
+<meta name=Generator content="Microsoft Word 12 (filtered medium)">
+
+<!--[if !mso]>
+
+<style>
+
+v\:* {behavior:url(#default#VML);}
+
+o\:* {behavior:url(#default#VML);}
+
+w\:* {behavior:url(#default#VML);}
+
+.shape {behavior:url(#default#VML);}
+
+</style>
+
+<![endif]-->
+
+<style>
+
+<!--
+
+ /* Font Definitions */
+
+ @font-face
+
+            {font-family:"Cambria Math";
+
+            panose-1:2 4 5 3 5 4 6 3 2 4;}
+
+@font-face
+
+            {font-family:Calibri;
+
+            panose-1:2 15 5 2 2 2 4 3 2 4;}
+
+@font-face
+
+            {font-family:Tahoma;
+
+            panose-1:2 11 6 4 3 5 4 4 2 4;}
+
+ /* Style Definitions */
+
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+
+            {margin:0cm;
+
+            margin-bottom:.0001pt;
+
+            font-size:10.0pt;
+
+            font-family:"Arial","sans-serif";}
+
+a:link, span.MsoHyperlink
+
+            {mso-style-priority:99;
+
+            color:blue;
+
+            text-decoration:underline;}
+
+a:visited, span.MsoHyperlinkFollowed
+
+            {mso-style-priority:99;
+
+            color:purple;
+
+            text-decoration:underline;}
+
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+
+            {mso-style-priority:99;
+
+            mso-style-link:"Balloon Text Char";
+
+            margin:0cm;
+
+            margin-bottom:.0001pt;
+
+            font-size:8.0pt;
+
+            font-family:"Tahoma","sans-serif";}
+
+span.EmailStyle17
+
+            {mso-style-type:personal-compose;
+
+            font-family:"Arial","sans-serif";
+
+            color:windowtext;}
+
+span.BalloonTextChar
+
+            {mso-style-name:"Balloon Text Char";
+
+            mso-style-priority:99;
+
+            mso-style-link:"Balloon Text";
+
+            font-family:"Tahoma","sans-serif";}
+
+.MsoChpDefault
+
+            {mso-style-type:export-only;}
+
+@page Section1
+
+            {size:612.0pt 792.0pt;
+
+            margin:72.0pt 72.0pt 72.0pt 72.0pt;}
+
+div.Section1
+
+            {page:Section1;}
+
+-->
+
+</style>
+
+<!--[if gte mso 9]><xml>
+
+ <o:shapedefaults v:ext="edit" spidmax="2050" />
+
+</xml><![endif]--><!--[if gte mso 9]><xml>
+
+ <o:shapelayout v:ext="edit">
+
+  <o:idmap v:ext="edit" data="1" />
+
+ </o:shapelayout></xml><![endif]-->
+
+</head>
+
+<BODY lang=en-US dir=ltr text=#000000 vLink=#0000ff link=#0000ff
+	bgColor=#ffffff>
+<!--<p>
+<FONT color=#000000><FONT size=2>
+$!VO.message
+</FONT></FONT>
+</p>
+
+<P><FONT color=#000000><FONT size=2><FONT
+	face="Arial">Please Click on the below link to verify your email.</FONT></FONT></FONT></P>
+
+$!VO.message
+
+<P><FONT color=#000000><FONT size=2><FONT
+	face="Arial">In case you have any queries,please send an email to $!VO.helpdeskMail.</FONT></FONT></FONT></P>
+
+
+<P><FONT color=#000000><FONT size=2><FONT
+	face="Arial">Please do not reply to this email.</FONT></FONT></FONT></P>
+
+<P><FONT face="Arial"><FONT size=2>Thank You</FONT></FONT></P>
+<P><FONT face="Arial"><FONT size=2>Firstmonie Agent Banking Team</FONT></FONT></P>-->
+
+$!VO.message
+
+</BODY>
+</html>

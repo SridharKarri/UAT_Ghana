@@ -1,0 +1,109 @@
+<!--
+The below is the sample template used to send the mail
+--!>
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40">
+
+
+
+<head>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=us-ascii">
+
+<meta name=Generator content="Microsoft Word 12 (filtered medium)">
+
+<!--[if !mso]>
+
+<style>
+
+v\:* {behavior:url(#default#VML);}
+
+o\:* {behavior:url(#default#VML);}
+
+w\:* {behavior:url(#default#VML);}
+
+.shape {behavior:url(#default#VML);}
+body{
+font-family: monospace; 
+font-size: 12px;
+}
+tr{
+border:1px solid #EFD;
+}
+.header{
+ font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+ font-size:16px;
+ font-weight:600;
+ color:#000000;
+ line-height:1.25
+}
+.footer{
+ font-family:Helvetica,Arial,sans-serif;
+ background:#fafafa;
+ font-weight:400;
+}
+.content{
+ font-family:monospace;
+ font-size:14px;
+ color:#000000;
+ line-height:1.25
+}
+</style>
+
+<![endif]-->
+
+<style type="text/css">
+
+</style>
+
+<!--[if gte mso 9]><xml>
+
+ <o:shapedefaults v:ext="edit" spidmax="2050" />
+
+</xml><![endif]--><!--[if gte mso 9]><xml>
+
+ <o:shapelayout v:ext="edit">
+
+  <o:idmap v:ext="edit" data="1" />
+
+ </o:shapelayout></xml><![endif]-->
+
+</head>
+
+<BODY lang=en-US dir=ltr text=#000000 vLink=#0000ff link=#0000ff
+	bgColor=#ffffff>
+	<div style="bgcolor=#F6F6F6; min-width:332px;max-width:800px; border: 1px solid #EEECCC; font-family:Roboto-Regular,Helvetica,Arial,sans-serif;">
+	<table bgcolor="#E6E6E6" width="100%" border="0" cellspacing="0" cellpadding="0" style="min-width:332px;max-width:800px;border:1px solid #e0e0e0;border-bottom:0;border-top-left-radius:3px;border-top-right-radius:3px">
+
+	<tbody><tr><td height="20px" colspan="3"></td></tr>
+	<tr><td width="22px"></td><td class="header">$!VO.subject</td><td width="32px"></td></tr>
+	<tr><td height="10px" colspan="3"></td></tr>
+	</tbody>
+	</table>
+
+	<table bgcolor="#FAFAFA" width="100%" border="0" cellspacing="0" cellpadding="0" style="min-width:332px;max-width:800px;border:1px solid #e0e0e0;border-bottom:0;border-top-left-radius:3px;border-top-right-radius:3px">
+
+	<tbody>
+	
+	<tr><td height="50px" colspan="3"></td></tr><tr><td width="32px"></td><td class="content">
+	Dear <b>Support,</b><br/><br/>
+	<table bgcolor="#FAFAFA" width="100%" cellspacing="0" cellpadding="0" style=" border: 4px solid rgba(229, 229, 229, 0.88);
+    color: rgba(98, 103, 114, 0.94); font-family: monospace; font-size: 12px;">	
+	$!VO.message
+	</table>
+	
+	<tr><td height="22px" colspan="3"></td></tr><tr><td width="32px"></td><td class="content">For further enquiries or support, please call 0700FIRSTCONTACT (0700-34778-2668228), 01-4485500, 0708-062-5000 or send an e-mail to  $!VO.helpdeskMail.</td><td width="32px"></td></tr><tr><td height="18px" colspan="3"></td></tr>
+
+	<tr><td height="22px" colspan="3"></td></tr><tr><td width="32px"></td><td class="content">Please do not reply to this email.</td><td width="32px"></td></tr><tr><td height="18px" colspan="3"></td></tr>
+
+	<tr><td width="22px"></td><td class="footer">Thank You</td><td width="32px"></td></tr>
+	<tr><td height="10px" colspan="3"></td></tr>
+	<tr><td width="22px"></td><td class="footer">Firstmonie Agent Banking Team</td><td width="32px"></td></tr>
+	<tr><td height="10px" colspan="3"></td></tr>
+
+	</tbody>
+	</table>
+	</div>
+
+
+</BODY>
+</html>
