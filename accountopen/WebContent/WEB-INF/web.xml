@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee"
+ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+ id="WebApp_ID" metadata-complete="true" version="3.0">
+  
+  <display-name>accountopen</display-name>
+  
+  <servlet>
+		<servlet-name>acimg</servlet-name>
+		<servlet-class>com.ceva.servlet.ImageServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>acimg</servlet-name>
+		<url-pattern>/image/mandate</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>idimage</servlet-name>
+		<servlet-class>com.ceva.servlet.IdImageServlet</servlet-class>
+		<load-on-startup>2</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>idimage</servlet-name>
+		<url-pattern>/image/idimage</url-pattern>
+	</servlet-mapping>
+  
+  <!-- <filter>
+        <filter-name>reqFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+   </filter>
+	<filter-mapping>
+        <filter-name>reqFilter</filter-name>
+        <url-pattern>/app/*</url-pattern>
+   </filter-mapping> -->
+  
+  <servlet>
+    <servlet-name>accountopen</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>accountopen</servlet-name>
+    <url-pattern>/app/*</url-pattern>
+  </servlet-mapping>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>WEB-INF/classes/app-context.xml</param-value>
+  </context-param>
+  <context-param>
+    <param-name>tempfile.dir</param-name>
+    <param-value>tmpfiles</param-value>
+  </context-param>
+  <listener>
+    <listener-class>com.ceva.listener.DBListener</listener-class>
+  </listener>
+  
+</web-app>
