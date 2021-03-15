@@ -1,0 +1,108 @@
+<!--
+The below is the sample template used to send the mail
+--!>
+<html xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:m="http://schemas.microsoft.com/office/2004/12/omml" xmlns="http://www.w3.org/TR/REC-html40">
+
+
+
+<head>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=us-ascii">
+
+<meta name=Generator content="Microsoft Word 12 (filtered medium)">
+
+<!--[if !mso]>
+
+<style>
+
+v\:* {behavior:url(#default#VML);}
+
+o\:* {behavior:url(#default#VML);}
+
+w\:* {behavior:url(#default#VML);}
+
+.shape {behavior:url(#default#VML);}
+body{
+font-family: monospace; 
+font-size: 12px;
+}
+
+.header{
+ font-family:Roboto-Regular,Helvetica,Arial,sans-serif;
+ font-size:16px;
+ font-weight:600;
+ color:#000000;
+ line-height:1.25
+}
+.footer{
+ font-family:Helvetica,Arial,sans-serif;
+ background:#fafafa;
+ font-weight:400;
+}
+.content{
+ font-family:monospace;
+ font-size:14px;
+ color:#000000;
+ line-height:1.25
+}
+</style>
+
+<![endif]-->
+
+<style type="text/css">
+
+</style>
+
+<!--[if gte mso 9]><xml>
+
+ <o:shapedefaults v:ext="edit" spidmax="2050" />
+
+</xml><![endif]--><!--[if gte mso 9]><xml>
+
+ <o:shapelayout v:ext="edit">
+
+  <o:idmap v:ext="edit" data="1" />
+
+ </o:shapelayout></xml><![endif]-->
+
+</head>
+
+<BODY lang=en-US dir=ltr text=#000000 vLink=#0000ff link=#0000ff
+	bgColor=#ffffff>
+	<div style="bgcolor=#F6F6F6; min-width:332px;max-width:800px; border: 1px solid #EEECCC; font-family:cursive;">
+	<table bgcolor="#E6E6E6" width="100%" border="0" cellspacing="0" cellpadding="0" style="min-width:332px;max-width:800px;border:1px solid #e0e0e0;border-bottom:0;border-top-left-radius:3px;border-top-right-radius:3px">
+
+	<tbody><tr><td height="20px" colspan="3"></td></tr>
+	<tr><td width="22px"></td><td class="header">$!VO.subject</td><td width="32px"></td></tr>
+	<tr><td height="10px" colspan="3"></td></tr>
+	</tbody>
+	</table>
+
+	<table bgcolor="#FAFAFA" width="100%" border="0" cellspacing="0" cellpadding="0" style="min-width:332px;max-width:800px;border:1px solid #e0e0e0;border-bottom:0;border-top-left-radius:3px;border-top-right-radius:3px">
+
+	<tbody>
+	
+	<tr><td height="50px" colspan="3"></td></tr><tr><td width="32px"></td><td class="content">
+	<table style='font-family: cursive;'><tr><td>
+	$!VO.message
+	<!--Dear <b>Bolaji</b><br/><br/> Your total transaction amount on :<b>03-07-2017, is :NGN20000</b></b>. <br/> Please view attached transaction report for the breakdown of the commission earned per transaction processed.-->
+	</td></tr>
+	</table>
+	
+	
+	<tr><td height="22px" colspan="3"></td></tr><tr><td width="32px"></td><td class="content">Pour plus d'informations ou pour obtenir de l'aide, appelez le 0700FIRSTCONTACT (0700-34778-2668228), le 01-4485500, le 0708-062-5000 ou envoyez un courriel à  $!VO.helpdeskMail.</td><td width="32px"></td></tr><tr><td height="18px" colspan="3"></td></tr>
+
+	<tr><td height="22px" colspan="3"></td></tr><tr><td width="32px"></td><td class="content">S'il vous plait ne répondez pas à cet email.</td><td width="32px"></td></tr><tr><td height="18px" colspan="3"></td></tr>
+
+	<tr><td width="22px"></td><td class="footer">Je vous remercie</td><td width="32px"></td></tr>
+	<tr><td height="10px" colspan="3"></td></tr>
+	<tr><td width="22px"></td><td class="footer">Équipe bancaire Firstmonie Agent</td><td width="32px"></td></tr>
+	<tr><td height="10px" colspan="3"></td></tr>
+
+	</tbody>
+	</table>
+	</div>
+
+
+</BODY>
+</html>
